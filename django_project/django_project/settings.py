@@ -128,9 +128,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASE_URL = os.environ.get(
-    'DATABASE_URL',
-    default='postgresql://stepic_data_user:eKxgk8N5wmXbIIIqqyywq8HUCqMwVZlG@dpg-d4c3cvjipnbc7396geqg-a.oregon-postgres.render.com/stepic_data')
+DATABASE_URL = os.environ.get('postgresql://stepic_data_user:eKxgk8N5wmXbIIIqqyywq8HUCqMwVZlG@dpg-d4c3cvjipnbc7396geqg-a.oregon-postgres.render.com/stepic_data')
 
 DATABASES = {
     """'default': {
