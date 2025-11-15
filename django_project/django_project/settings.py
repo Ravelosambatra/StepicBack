@@ -22,10 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-40i9f%=1+@f8rbkt5eaw1y)&ohms_n*#l$()oicz-6w#jy102f'
-
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-default-key")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["https://stepicback.onrender.com"]
 
@@ -128,7 +127,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASE_URL = os.environ.get('postgresql://stepic_data_user:eKxgk8N5wmXbIIIqqyywq8HUCqMwVZlG@dpg-d4c3cvjipnbc7396geqg-a.oregon-postgres.render.com/stepic_data')
+
 
 DATABASES = {
     """'default': {
@@ -139,7 +138,9 @@ DATABASES = {
         'HOST' : 'localhost',
         'PORT' : '5432',
     }"""
-    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600)
 }
 
 SECURE_SSL_REDIRECT = True
